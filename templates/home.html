@@ -1,4 +1,126 @@
-<h1>
-    Hello World
+<!DOCTYPE html>
+<html lang="en">
 
-</h2>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boston House Price Prediction</title>
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Hind:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Open Sans Condensed', sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .container {
+      background-color: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      border-radius: 10px;
+      width: 400px;
+    }
+
+    h1 {
+      font-family: 'Pacifico', sans-serif;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .input-field:focus {
+      border-color: #0066cc;
+      outline: none;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #004c99;
+    }
+
+    .prediction-text {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+    }
+
+    /* Responsive design for mobile */
+    @media (max-width: 600px) {
+      .container {
+        width: 90%;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .btn-primary {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Boston House Price Prediction</h1>
+
+    <!-- Main Input For Receiving Query to ML -->
+    <form action="{{ url_for('predict') }}" method="post">
+      <input type="text" name="CRIM" placeholder="CRIM" required class="input-field" /><br>
+      <input type="text" name="ZN" placeholder="ZN" required class="input-field" /><br>
+      <input type="text" name="INDUS" placeholder="INDUS" required class="input-field" /><br>
+      <input type="text" name="CHAS" placeholder="CHAS" required class="input-field" /><br>
+      <input type="text" name="NOX" placeholder="NOX" required class="input-field" /><br>
+      <input type="text" name="RM" placeholder="RM" required class="input-field" /><br>
+      <input type="text" name="Age" placeholder="Age" required class="input-field" /><br>
+      <input type="text" name="DIS" placeholder="DIS" required class="input-field" /><br>
+      <input type="text" name="RAD" placeholder="RAD" required class="input-field" /><br>
+      <input type="text" name="TAX" placeholder="TAX" required class="input-field" /><br>
+      <input type="text" name="PTRATIO" placeholder="PTRATIO" required class="input-field" /><br>
+      <input type="text" name="B" placeholder="B" required class="input-field" /><br>
+      <input type="text" name="LSTAT" placeholder="LSTAT" required class="input-field" /><br>
+
+      <button type="submit" class="btn-primary">Predict</button>
+    </form>
+
+    <div class="prediction-text">
+      {{ prediction_text }}
+    </div>
+  </div>
+
+</body>
+
+</html>
